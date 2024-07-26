@@ -9,8 +9,20 @@
     <style>
         body {
             background-color: #040c47;
-            background: url(ufo.jpg);
             color: #fff;
+            position: relative;
+        }
+        body::before {
+            content: "";
+display: block;
+height:100%;
+width:100%;
+position: fixed;
+background: url(ufo.jpg);
+background-position: bottom;
+background-repeat: no-repeat;
+
+
         }
         label{
             padding: 0px;
