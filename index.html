@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Ticket Generator</title>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <style>
+        body {
+            background-color: #040c47;
+            background: url(assets/img/bg/ufo.jpg);
+            color: #fff;
+        }
+        label{
+            padding: 0px;
+            margin: 0px;
+            font-size: 12px;
+            font-weight: 100;
+            color: #ccc;
+        }
+        .frame {
+            overflow-x: auto;
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .ticket {
+            width: 900px;
+            height: 280px;
+            margin: 0px auto;
+            background: #12229c;
+            color: #fff;
+            position: relative;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        .ticket .left{
+            width: 65%;
+            height: 100%;
+            padding: 20px 0px 20px 0px; 
+            background-image: url(assets/img/img/map.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 95%;          
+        }
+        .ticket .left .passanger-details{
+            width: 60%;
+        }
+        .ticket .left .passanger-details .heading{
+            background-color: #fff ;
+            color: #050a30;
+            width: 240px;
+            padding-left: 20px;
+        }
+        .ticket .left .passanger-details .heading h4{
+            font-weight: 600;
+        }
+        .ticket .left .passanger-details .passanger-info{
+            padding-left: 20px;
+        }
+        .ticket .left .passanger-details .passanger-info-fotter{
+            padding-left: 20px;
+            display: flex;
+        }
+        .ticket .left .passanger-details .passanger-info-fotter .detail-1{
+            width: 40%;
+
+        }
+        .ticket .left .passanger-details .passanger-info-fotter .detail-2{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            font-size: 1.75rem;
+        }
+        .ticket .left .passanger-details .passanger-info-fotter .detail-3{
+            width: 40%;
+        }
+        .ticket .left .brand{
+            width: 40%;
+        }
+        .ticket .left .info{
+            display: flex;
+            justify-content: space-between;
+            background: #050a30;
+        }
+        .ticket .left .info div{
+            flex: 1;
+            text-align: center;
+            border-right: 1px solid #cccccc59;
+            padding: 0 5px;
+        }
+        .ticket .left .info div:last-child{
+            background-color: #fff;
+            border: none;
+        }
+        .ticket .left .info div:last-child h6, .ticket .left .info div:last-child label{
+            color: #050a30;
+            font-weight: 700;
+        }
+        .ticket .right{
+            width: 35%;
+            height: 100%;
+            padding: 20px 0px 20px 20px;
+            background-color: #050a30;
+        }
+        .ticket .right .passanger-info-fotter{
+            display: flex;
+        }
+        .ticket .right .passanger-info-fotter .detail-1{
+            width: 40%;
+
+        }
+        .ticket .right .passanger-info-fotter .detail-2{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            font-size: 1.75rem;
+        }
+        .ticket .right .passanger-info-fotter .detail-3{
+            width: 40%;
+        }
+        .ticket .right .passanger-info-fotter .text-details{
+            font-size: 1.1rem;
+        }
+        .ticket .right .info{
+            display: flex;
+            justify-content: space-between;
+            background: #050a30;
+        }
+        .ticket .right .info div{
+            flex: 1;
+            text-align: left;
+            padding: 0 3px;
+        }
+        .h7{
+            font-size: .9rem;
+        }
+        h6{
+            font-size: 1rem;
+        }
+        .site-sec{
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px double transparent;
+            background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)), radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        .form-control{
+            background-color: whitesmoke;
+        }
+        .submitBTN{
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            background-color: #00DBDE;
+            background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+            width: 80%;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="site-sec">
+                    <div class="d-flex justify-content space-between">
+                        <button class="btn btn-lg btn-light" onclick="goBack()"><i class="fa fa-arrow-left"></i></button>
+                        <div class="ml-5">
+                            <h2>AIRLINE UPDATE</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="form-section"> 
+        <form id="ticket-form">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h3>Personal Details</h3>
+                    <div class="site-sec">
+                        <div class="form-group">
+                            <label for="airline">Airline</label>
+                            <input type="text" class="form-control" id="airline" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer">Customer Name</label>
+                            <input type="text" class="form-control" id="customer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="flightNumber">Flight Number</label>
+                            <input type="text" class="form-control" id="flightNumber" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h3>Routes</h3>
+                    <div class="site-sec">
+                        <div class="form-group">
+                            <label for="departure">Departure</label>
+                            <input type="text" class="form-control" id="departure" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="arrival">Arrival</label>
+                            <input type="text" class="form-control" id="arrival" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h3>Time And Date</h3>
+                    <div class="site-sec">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" class="form-control" id="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seatNumber">Seat Number</label>
+                            <input type="text" class="form-control" id="seatNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gate">Gate</label>
+                            <input type="text" class="form-control" id="gate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Class</label>
+                            <input type="text" class="form-control" id="class" required>
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary submitBTN">Generate Ticket</button>
+                </div>
+            </div> 
+        </form>
+    </div>
+    <div class="container mt-4 d-none" id="ticket-preview">
+        <div class="row>
+            <div class="col-12">
+                <div class="frame">
+                    <div class="ticket" id="ticket">
+                        <div class="d-flex w-100 h-100">
+                            <div class="left">
+                                <div class="d-flex">
+                                    <div class="passanger-details">
+                                        <div class="heading">
+                                            <h4>BOARDING PASS</h4>
+                                        </div>
+                                        <div class="passanger-info">
+                                            <label for="passanger-name">Passanger Name</label>
+                                            <h5 class="text-details customer-name"></h5>
+                                        </div>
+                                        <div class="passanger-info-fotter">
+                                            <div class="detail-1">
+                                                <label for="passanger-name">Departure</label>
+                                                <h5 class="text-details departure-info"></h5>
+                                            </div>
+                                            <div class="detail-2">
+                                                <i class="fa fa-plane"></i>
+                                            </div>
+                                            <div class="detail-3">
+                                                <label for="passanger-name">Destination</label>
+                                                <h5 class="text-details arrival-info"></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="brand">
+                                        <div class="logo text-center">
+                                            <img src="assets/img/logo/site-logo-sm.png" alt="logo" width="60px">
+                                        </div>
+                                        <h5 class="text-center mt-2">BONCE AIRLINE</h5>
+                                        <div class="barcode">
+                                            <img src="assets/img/img/barcode.png" alt="" width="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info">
+                                    <div>
+                                        <label for="">Date</label>
+                                        <h6 class="date-info"></h6>
+                                    </div>
+                                    <div>
+                                        <label for="">Time</label>
+                                        <h6 class="time-info"></h6>
+                                    </div>
+                                    <div>
+                                        <label for="">Sit</label>
+                                        <h6 class="seat-number-info"></h6>
+                                    </div>
+                                    <div>
+                                        <label for="">Gate</label>
+                                        <h6 class="gate-info"></h6>
+                                    </div>
+                                    <div>
+                                        <label for="">Flight</label>
+                                        <h6 class="flight-number-info"></h6>
+                                    </div>
+                                    <div>
+                                        <label for="">Class</label>
+                                        <h6 class="class-info"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="heading">
+                                    <h5>BOARDING PASS</h5>
+                                </div>
+                                <div class="passanger-info">
+                                    <label for="passanger-name">Passanger Name</label>
+                                    <h6 class="text-details customer-name"></h6>
+                                </div>
+                                <div class="passanger-info-fotter">
+                                    <div class="detail-1">
+                                        <label for="passanger-name">Departure</label>
+                                        <div class="text-details departure-info"></div>
+                                    </div>
+                                    <div class="detail-2">
+                                        <i class="fa fa-plane"></i>
+                                    </div>
+                                    <div class="detail-3">
+                                        <label for="passanger-name">Destination</label>
+                                        <div class="text-details arrival-info"></div>
+                                    </div>
+                                </div>
+                                <div class="info">
+                                    <div>
+                                        <label for="">Gate</label>
+                                        <p class="h7 gate-info"></p>
+                                    </div>
+                                    <div>
+                                        <label for="">Sit</label>
+                                        <p class="h7 seat-number-info"></p>
+                                    </div>
+                                    <div>
+                                        <label for="">Class</label>
+                                        <p class="h7 class-info"></p>
+                                    </div>
+                                    <div>
+                                        <label for="">Flight</label>
+                                        <p class="h7 flight-number-info"></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="assets/img/img/barcode.png" alt="" width="150px" height="30px">
+                                    <div class="pl-3">
+                                        <label for="">Date</label>
+                                        <p class="h7 date-info" style="margin-top: -10px;"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <h2>BOARDING PASS</h2>
+                        <div class="ticket-details">
+                            <div>
+                                <div>Passenger Name:</div>
+                                <div id="customer-name">OLIVIA WILSON</div>
+                            </div>
+                            <div>
+                                <div>Departure:</div>
+                                <div id="departure-info">MELBOURNE</div>
+                            </div>
+                            <div>
+                                <div>Destination:</div>
+                                <div id="arrival-info">LONDON</div>
+                            </div>
+                        </div>
+                        <div class="ticket-details">
+                            <div>
+                                <div>Date:</div>
+                                <div id="date-info">2025/05/05</div>
+                            </div>
+                            <div>
+                                <div>Time:</div>
+                                <div id="time-info">14:00</div>
+                            </div>
+                            <div>
+                                <div>Seat:</div>
+                                <div id="seat-number-info">12A</div>
+                            </div>
+                        </div>
+                        <div class="ticket-details">
+                            <div>
+                                <div>Gate:</div>
+                                <div id="gate-info">8</div>
+                            </div>
+                            <div>
+                                <div>Flight:</div>
+                                <div id="flight-number-info">BC1234</div>
+                            </div>
+                            <div>
+                                <div>Class:</div>
+                                <div id="class-info">ECONOMIC</div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12">
+                <button class="btn btn-success submitBTN d-none" id="saveBtn" onclick="saveTicketAsImage()">Save Ticket as Image</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/vendor/jquery/jQuery.js"></script>
+    <script src="assets/vendor/html2canvas/html2canvas.min.js"></script>
+    <script src="assets/vendor/filesaver/FileSaver.js"></script>
+    <script>
+        document.getElementById('ticket-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+           var custormerName = $('#customer').val();
+           var departureInfo = $('#departure').val();
+           var arrivalInfo = $('#arrival').val();
+           var dateInfo = $('#date').val();
+           var timeInfo = $('#time').val();
+           var seatNumberInfo = $('#seatNumber').val();
+           var gateInfo = $('#gate').val();
+           var flightNumberInfo = $('#flightNumber').val();
+           var classInfo = $('#class').val();
+
+            $('.customer-name').text(custormerName);
+            $('.departure-info').text(departureInfo);
+            $('.arrival-info').text(arrivalInfo);
+            $('.date-info').text(dateInfo);
+            $('.time-info').text(timeInfo);
+            $('.seat-number-info').text(seatNumberInfo);
+            $('.gate-info').text(gateInfo);
+            $('.flight-number-info').text(flightNumberInfo);
+            $('.class-info').text(classInfo);
+
+            $('#form-section').addClass('d-none')
+            $('#form-section').removeClass('d-block')
+
+            $('#ticket-preview').addClass('d-block')
+            $('#ticket-preview').removeClass('d-none')
+
+            $('#saveBtn').addClass('d-block')
+            $('#saveBtn').removeClass('d-none')
+            
+            // document.getElementsByClassName('customer-name').innerText = document.getElementById('customer').value;
+            // document.getElementsByClassName('departure-info').innerText = document.getElementById('departure').value;
+            // document.getElementsByClassName('arrival-info').innerText = document.getElementById('arrival').value;
+            // document.getElementsByClassName('date-info').innerText = document.getElementById('date').value;
+            // document.getElementsByClassName('time-info').innerText = document.getElementById('time').value;
+            // document.getElementsByClassName('seat-number-info').innerText = document.getElementById('seatNumber').value;
+            // document.getElementsByClassName('gate-info').innerText = document.getElementById('gate').value;
+            // document.getElementsByClassName('flight-number-info').innerText = document.getElementById('flightNumber').value;
+            // document.getElementsByClassName('class-info').innerText = document.getElementById('class').value;
+        });
+
+        function saveTicketAsImage() {
+            html2canvas(document.getElementById('ticket')).then(canvas => {
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, 'ticket.png');
+                });
+            });
+        }
+
+        function goBack(){
+            $('#form-section').removeClass('d-none')
+            $('#form-section').addClass('d-block')
+
+            $('#ticket-preview').removeClass('d-block')
+            $('#ticket-preview').addClass('d-none')
+
+            $('#saveBtn').addClass('d-none')
+            $('#saveBtn').removeClass('d-block')
+        }
+    </script>
+</body>
+</html>
